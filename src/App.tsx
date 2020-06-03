@@ -1,31 +1,36 @@
 import React from 'react';
-import './App.css';
-import { TodoForm } from './TodoForm';
-import { TodoInterface } from '../interfaces';
-import { TodoList } from './TodoList';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { AppBar } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 
-function App() {
-  const [todos, setTodos] = React.useState<TodoInterface[]>([]);
+import { Main } from './Main';
+import { DrawerSidebar } from './DrawerSidebar';
+import { Homepage } from './Homepage';
 
-  const handleAddTodo = (todo: TodoInterface) => {
-    const newTodosState: TodoInterface[] = [...todos];
-
-    // Update new todos state
-    newTodosState.push(todo);
-
-    // Update todos state
-    setTodos(newTodosState);
-  };
-
-  console.log(todos);
+export const App = () => {
+  const classes = useStyles();
 
   return (
-    <div>
-      <h1>My Typescript Todo</h1>
-      <TodoForm todos={todos} handleAddTodo={handleAddTodo} />
-      <TodoList todos={todos} />
-    </div>
+    <>
+      <AppBar position="static" className={classes.appBar}>
+        <h1>My Typescript Todo</h1>
+      </AppBar>
+      <BrowserRouter>
+        <DrawerSidebar />
+        <Switch>
+          <Route path="/todos" exact component={Main} />
+          <Route path="/" exact component={Homepage} />
+        </Switch>
+      </BrowserRouter>
+    </>
   );
-}
+};
+
+const useStyles = makeStyles(() => ({
+  appBar: {
+    textAlign: 'center',
+    fontFamily: 'Roboto Condensed,sans-serif',
+  },
+}));
 
 export default App;
