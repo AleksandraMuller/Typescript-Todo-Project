@@ -1,15 +1,24 @@
 import React from 'react';
 import './App.css';
 import { TodoForm } from './TodoForm';
-import { TodoInterface } from '../interfaces';
+import { TodoInterface } from './interfaces';
 import { TodoList } from './TodoList';
-import { DrawerSidebar } from './DrawerSidebar';
-
+import { useSelector } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectTodos } from './redux/task/task.selector';
 import { makeStyles } from '@material-ui/styles';
 
 export const Main: React.FC = () => {
   const classes = useStyles();
   const [todos, setTodos] = React.useState<TodoInterface[]>([]);
+
+  const selectors = useSelector(
+    createStructuredSelector({
+      todos: selectTodos,
+    })
+  );
+
+  console.log(selectors.todos.map((todo: TodoInterface) => todo));
 
   const handleAddTodo = (todo: TodoInterface) => {
     const newTodosState: TodoInterface[] = [...todos];
@@ -21,12 +30,10 @@ export const Main: React.FC = () => {
     setTodos(newTodosState);
   };
 
-  console.log(todos);
-
   return (
     <div className={classes.root}>
-      <TodoForm todos={todos} handleAddTodo={handleAddTodo} />
-      <TodoList todos={todos} />
+      <TodoForm todos={selectors.todos} handleAddTodo={handleAddTodo} />
+      <TodoList />
     </div>
   );
 };

@@ -7,6 +7,9 @@ import { Main } from './Main';
 import { DrawerSidebar } from './DrawerSidebar';
 import { Homepage } from './Homepage';
 
+const SECRET_KEY = 'TESTING IF IT WORKS';
+console.log(SECRET_KEY);
+
 export const App = () => {
   const classes = useStyles();
 

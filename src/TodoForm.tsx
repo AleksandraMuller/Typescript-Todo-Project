@@ -1,6 +1,9 @@
 import React from 'react';
 import shortid from 'shortid';
-import { TodoInterface, TodoFormInterface } from '../interfaces';
+import { TodoInterface, TodoFormInterface } from './interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { addTask } from './redux/task/task.actions';
 
 import {
   TextField,
@@ -18,6 +21,7 @@ export const TodoForm = (props: TodoFormInterface) => {
   const [open, setOpen] = React.useState(false);
 
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -31,6 +35,15 @@ export const TodoForm = (props: TodoFormInterface) => {
       text: todo,
       isCompleted: false,
     };
+
+    // Dispatch to store
+    dispatch(
+      addTask({
+        id: shortid.generate(),
+        text: todo,
+        isCompleted: false,
+      })
+    );
     props.handleAddTodo(newTodo);
     setTodo('');
     setOpen(false);
