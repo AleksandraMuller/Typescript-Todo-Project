@@ -2,6 +2,7 @@ import { TodoInterface } from '../../interfaces';
 
 export enum TodoActions {
   ADD_TODO = 'ADD_TODO',
+  DELETE_TODO = 'DELETE_TODO',
 }
 
 export interface TodoActionType<T, P> {
@@ -9,7 +10,6 @@ export interface TodoActionType<T, P> {
   payload: P;
 }
 
-export type TodoAction = TodoActionType<
-  typeof TodoActions.ADD_TODO,
-  TodoInterface
->;
+export type TodoAction =
+  | TodoActionType<typeof TodoActions.ADD_TODO, TodoInterface>
+  | TodoActionType<typeof TodoActions.DELETE_TODO, TodoInterface>;

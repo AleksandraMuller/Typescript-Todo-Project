@@ -1,9 +1,9 @@
 import React from 'react';
 import shortid from 'shortid';
-import { TodoInterface, TodoFormInterface } from './interfaces';
+import { TodoInterface, TodoFormInterface } from '../interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addTask } from './redux/task/task.actions';
+import { addTask } from '../redux/task/task.actions';
 
 import {
   TextField,

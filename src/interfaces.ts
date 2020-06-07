@@ -15,4 +15,5 @@ export interface TodoListInterface {
 
 export interface TodoItemInterface {
   todo: TodoInterface;
+  deleteTodo: () => void;
 }

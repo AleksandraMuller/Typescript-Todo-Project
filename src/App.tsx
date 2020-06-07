@@ -3,9 +3,9 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { AppBar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 
-import { Main } from './Main';
-import { DrawerSidebar } from './DrawerSidebar';
-import { Homepage } from './Homepage';
+import { Main } from './pages/Main';
+import { DrawerSidebar } from './components/DrawerSidebar';
+import { Homepage } from './pages/Homepage';
 
 const SECRET_KEY = 'TESTING IF IT WORKS';
 console.log(SECRET_KEY);

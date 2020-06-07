@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
-import { TodoForm } from './TodoForm';
-import { TodoInterface } from './interfaces';
-import { TodoList } from './TodoList';
+import './../App.css';
+import { TodoForm } from '../components/TodoForm';
+import { TodoInterface } from '../interfaces';
+import { TodoList } from '../components/TodoList';
 import { useSelector } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectTodos } from './redux/task/task.selector';
+import { selectTodos } from '../redux/task/task.selector';
 import { makeStyles } from '@material-ui/styles';
 
 export const Main: React.FC = () => {

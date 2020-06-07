@@ -12,12 +12,32 @@ const logger = createLogger();
 //   middlewares.push(logger);
 // }
 
+// if (window.navigator.userAgent.includes('Chrome')) {
+//   const store = createStore(
+//     rootReducer,
+//     compose(
+//       applyMiddleware(...middlewares, logger),
+//       (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+//         (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+//     )
+//   );
+// } else {
+//   const  store = createStore(
+//     rootReducer,
+//     compose(
+//       applyMiddleware(...middlewares, logger)
+//     )
+//   );
+// }
+
 export const store = createStore(
   rootReducer,
   compose(
     applyMiddleware(...middlewares, logger),
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+    window.navigator.userAgent.includes('Chrome')
+      ? (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+          (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+      : compose
   )
 );
 

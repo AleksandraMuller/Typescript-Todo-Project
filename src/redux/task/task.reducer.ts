@@ -1,5 +1,5 @@
 import { TodoActions, TodoAction } from '../task';
-import { addTaskToArr } from './task.utils';
+import { addTaskToArr, deleteTaskFromArr } from './task.utils';
 
 const INITIAL_STATE = {
   todos: [],
@@ -13,6 +13,12 @@ export const taskReducer = (state = INITIAL_STATE, action: any) => {
         ...state,
         todos: addTaskToArr(state.todos, action.payload),
         total: state.total + 1,
+      };
+    case TodoActions.DELETE_TODO:
+      return {
+        ...state,
+        todos: deleteTaskFromArr(state.todos, action.payload),
+        total: state.total - 1,
       };
     default:
       return state;
