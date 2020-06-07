@@ -17,3 +17,13 @@ export interface TodoItemInterface {
   todo: TodoInterface;
   deleteTodo: () => void;
 }
+
+export type BoredomFetch = {
+  activity: string;
+  type: string;
+  participants: number;
+  price: number;
+  link: string;
+  key: string;
+  accessibility: number;
+};
